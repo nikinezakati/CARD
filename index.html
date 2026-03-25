@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <style>
+      td,
+      th {
+         border: 0px solid black;
+      }
+
+      img {
+         padding: 5px;
+      }
+   </style>
+   <title>CARD: Correlation Aware Restoration with Diffusion</title>
+
+   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+   <link rel="stylesheet" href="./static/css/bulma.min.css">
+   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+   <link rel="stylesheet" href="./static/css/index.css">
+   <link rel="icon" href="./static/images/favicon.svg">
+   <link rel="stylesheet" href="https://unpkg.com/image-compare-viewer/dist/image-compare-viewer.min.css">
+   <link rel="stylesheet" href="css/app.css">
+   <link rel="stylesheet" href="css/bootstrap.min.css">
+   <script src="https://unpkg.com/image-compare-viewer/dist/image-compare-viewer.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script defer src="./static/js/fontawesome.all.min.js"></script>
+   <script src="./static/js/bulma-carousel.min.js"></script>
+   <script src="./static/js/bulma-slider.min.js"></script>
+   <script src="./static/js/index.js"></script>
+   <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<section class="hero">
+   <div class="hero-body">
+      <div class="container is-max-desktop">
+         <div class="columns is-centered">
+            <div class="column has-text-centered">
+               <h1 class="title is-1 publication-title" style="color:purple;">CARD:</h1>
+               <h1 class="title is-4 publication-title">Correlation Aware Restoration with Diffusion</h1>
+               <div class="is-size-5 publication-authors">
+                  <span class="author-block">
+                     Niki Nezakati,</span>
+                  <span class="author-block">
+                     Arnab Ghosh,</span>
+                  <span class="author-block">
+                     Amit Roy-Chowdhury,</span>
+                  <span class="author-block">
+                     Vishwanath Saragadam</span>
+               </div>
+               <div class="is-size-5 publication-authors">
+                  <span class="author-block">University of California, Riverside</span>
+               </div>
+               <div class="is-size-5 column has-text-centered">
+                  <a target="_blank" href="https://cvpr.thecvf.com/Conferences/2026"><b>CVPR 2026</b></a>
+               </div>
+               <div class="column has-text-centered">
+                  <div class="publication-links">
+                     <!-- arXiv Link -->
+                     <!-- <span class="link-block">
+                        <a target="_blank" href=""
+                           class="external-link button is-normal is-rounded is-dark">
+                           <span class="icon">
+                              <i class="ai ai-arxiv"></i>
+                           </span>
+                           <span>arXiv</span>
+                        </a>
+                     </span> -->
+                     <!-- Supplementary Material -->
+                     <!-- <span class="link-block">
+                        <a target="_blank" href="static/Supplementary.pdf"
+                           class="external-link button is-normal is-rounded is-dark">
+                           <span class="icon">
+                              <i class="fas fa-file-pdf"></i>
+                           </span>
+                           <span>Supplementary Material</span>
+                        </a>
+                     </span> -->
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+
+<section class="hero teaser">
+   <div class="container is-max-desktop">
+      <div class="hero-body">
+         <img class="round center-image" style="width:500px;" src="static/images/teaser.png" />
+         <h2 class="subtitle has-text-justified">
+            <span class="dnerf"></span> <b>Play your CARDs right.</b>
+            Image sensors, particularly those with rolling shutters, exhibit correlated noise, which limits the
+            performance of existing restoration methods. We propose <b>CARD</b>, a training-free diffusion-based
+            method for inverse problems under correlated noise. Given a covariance estimate and a pretrained
+            diffusion model, CARD solves linear inverse problems including denoising, deblurring, and
+            super-resolution. CARD also introduces <b>CIN-D</b>, the first publicly available dataset with
+            real spatially correlated noise captured across diverse illumination conditions.
+         </h2>
+      </div>
+   </div>
+</section>
+
+<section class="section">
+   <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+         <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+               <p>
+                  Denoising diffusion models have achieved state-of-the-art performance in image restoration by
+                  modeling the process as sequential denoising steps. However, most approaches assume independent
+                  and identically distributed (i.i.d.) Gaussian noise, while real-world sensors often exhibit
+                  spatially correlated noise due to readout mechanisms, limiting restoration quality in practice.
+                  We introduce <b>C</b>orrelation <b>A</b>ware <b>R</b>estoration with <b>D</b>iffusion
+                  (<b>CARD</b>), a training-free extension of DDRM that explicitly handles correlated Gaussian
+                  noise. CARD first whitens the noisy observation, converting the noise into an i.i.d. form.
+                  The diffusion restoration steps are then replaced with noise-whitened updates, which inherit
+                  DDRM's closed-form sampling efficiency while enabling restoration under correlated noise.
+                  To emphasize the importance of addressing correlated noise, we contribute <b>CIN-D</b>, a
+                  novel correlated noise dataset captured across diverse illumination conditions to evaluate
+                  restoration methods on real rolling-shutter sensor noise. This dataset fills a critical gap
+                  in the literature for experimental evaluation with real-world correlated noise. Experiments
+                  on standard benchmarks with synthetic correlated noise and on CIN-D demonstrate that CARD
+                  consistently outperforms existing methods across denoising, deblurring, and super-resolution
+                  tasks.
+               </p>
+            </div>
+         </div>
+      </div>
+      <!--/ Abstract. -->
+
+      <!-- Method. -->
+      <section class="section">
+         <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+               <div class="column is-four-fifths">
+                  <h2 class="title is-3">Method</h2>
+               </div>
+            </div>
+         </div>
+         <div class="hero-body">
+            <img class="round center-image" style="width:600px;" src="./static/images/overall.png" alt="overall" />
+         </div>
+         <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+               <div class="column is-four-fifths">
+                  <div class="content has-text-justified">
+                     <p class="subtitle has-text-justified">
+                        <b>Overall framework of CARD.</b> CARD is a two-step training-free approach to solving
+                        image-based inverse problems corrupted by correlated noise, as often found in real cameras.
+                        In <b>Step 1</b>, we whiten the measurement using the estimated covariance matrix
+                        \(\Sigma^{-1/2}\), converting correlated noise into an equivalent i.i.d. form:
+                        \(\tilde{\mathbf{y}} = \Sigma^{-1/2}\mathbf{y},\ \tilde{H} = \Sigma^{-1/2}H\).
+                        In <b>Step 2</b>, we apply standard DDRM updates in this whitened measurement space
+                        using the singular values of \(\tilde{H}\), inheriting DDRM's closed-form sampling
+                        efficiency without any retraining.
+                     </p>
+                     &nbsp;
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <div class="hero-body">
+            <img class="round center-image" style="width:500px;" src="./static/images/correlated_noise.png" alt="correlated_noise" />
+         </div>
+         <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+               <div class="column is-four-fifths">
+                  <div class="content has-text-justified">
+                     <p class="subtitle has-text-justified">
+                        <b>Correlated noise in real cameras.</b> Modern digital cameras, particularly those
+                        equipped with rolling shutter CMOS sensors, exhibit significant spatially correlated
+                        noise visible in dark frames (images captured with the lens cap on). This inter-pixel
+                        correlation — visible as striated banding patterns — is not modeled by standard i.i.d.
+                        Gaussian assumptions, and degrades the performance of existing restoration methods.
+                        This observation directly motivates CARD.
+                     </p>
+                     &nbsp;
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!--/ Method. -->
+
+      <!-- CIN-D Dataset. -->
+      <section class="section">
+         <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+               <div class="column is-four-fifths">
+                  <h2 class="title is-3">CIN-D Dataset</h2>
+               </div>
+            </div>
+         </div>
+         <div class="hero-body">
+            <img class="round center-image" style="width:800px;" src="./static/images/cind_dataset.png" alt="cind_dataset" />
+         </div>
+         <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+               <div class="column is-four-fifths">
+                  <div class="content has-text-justified">
+                     <p class="subtitle has-text-justified">
+                        <b>Example images from CIN-D dataset.</b> We contribute CIN-D (Correlated Image Noise
+                        Dataset), captured using a FLIR Blackfly S BFS-U3-63S4C-C color camera. CIN-D contains
+                        400 images from 100 scenes at three noise levels (low, medium, high) along with a
+                        long-exposure ground-truth image and dark frames for covariance estimation. Scenes span
+                        fluorescent-lit indoor and outdoor daylight/nighttime environments. To our knowledge,
+                        CIN-D is the first publicly available dataset that explicitly captures spatially
+                        correlated real sensor noise, filling a critical gap for evaluating restoration methods
+                        under realistic conditions.
+                     </p>
+                     &nbsp;
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!--/ CIN-D Dataset. -->
+
+      <!-- Results. -->
+      <section class="hero">
+         <div class="hero-body">
+            <div class="container is-max-desktop">
+               <div class="columns is-centered has-text-centered">
+                  <div class="column is-four-fifths">
+                     <h2 class="title is-3">Results</h2>
+                     <div class="content has-text-justified">
+
+                        <center>
+                           <img src="static/images/qualitative.png" alt="qualitative_comparison" border=0 style="width:100%;" />
+                        </center>
+                        <p class="subtitle has-text-justified">
+                           <b>Qualitative comparison of denoising, Gaussian deblurring, and super-resolution.</b>
+                           Results are shown for denoising at varying noise levels \(\sigma_0 = 0.1, 0.5, 0.9\),
+                           Gaussian deblurring at \(\sigma_0 = 0.2, 0.5\), and super-resolution (2&times; and
+                           4&times;) at \(\sigma_0 = 0.2\). The boxed regions highlight key differences. CARD
+                           removes noise while preserving fine details — such as text on books, object structures,
+                           and traffic signs — outperforming all baselines.
+                        </p>
+                        <br>
+
+                        <center>
+                           <img src="static/images/cind_qualitative.png" alt="cind_qualitative" border=0 style="width:100%;" />
+                        </center>
+                        <p class="subtitle has-text-justified">
+                           <b>Qualitative comparison of denoising results on CIN-D.</b>
+                           CARD effectively suppresses correlated sensor noise while preserving fine details
+                           across both indoor and outdoor settings. CARD achieves PSNR gains over
+                           all prior-based methods at both low and high noise levels while maintaining lower
+                           LPIPS scores.
+                        </p>
+                        <br>
+
+                        <!-- <center>
+                           <img src="static/images/robustness.png" alt="robustness" border=0 style="width:750px;" />
+                        </center>
+                        <p class="subtitle has-text-justified">
+                           <b><u>Robustness of CARD to covariance matrix estimation.</u></b>
+                           CARD remains robust and outperforms DDRM even with up to 10% perturbation of the
+                           whitening matrix. At perfect covariance knowledge (0% perturbation), CARD achieves
+                           29.5 dB vs. DDRM's 25.0 dB. Small perturbations (5%) cause only minor drops,
+                           indicating stability under realistic estimation errors.
+                        </p>
+                        <br>
+
+                        <center>
+                           <img src="static/images/generalization.png" alt="generalization" border=0 style="width:750px;" />
+                        </center>
+                        <p class="subtitle has-text-justified">
+                           <b><u>Generalizability of the CIN-D covariance estimate.</u></b>
+                           CARD with a covariance estimated from a FLIR Blackfly machine vision camera
+                           (CIN-D) still outperforms DDRM when applied to a Nikon Z30 mirrorless SLR camera,
+                           demonstrating that the spatial correlation structure of rolling-shutter noise is
+                           largely sensor-agnostic.
+                        </p>
+                        <br>
+
+                        <p class="subtitle has-text-justified">
+                           <i>Full quantitative results (PSNR / LPIPS / SSIM) for denoising, deblurring,
+                           and super-resolution on ImageNet, LSUN, and CIN-D are available in our main paper
+                           and supplementary material.</i>
+                        </p>
+                        <br> -->
+
+                         <p class="subtitle has-text-justified">
+                           <i>Check our main paper and supplementary for more detailed results, analyses and ablations.</i>
+                        </p>
+                        <br> 
+
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!--/ Results. -->
+
+      <!-- People. -->
+      <section class="hero">
+         <div class="hero-body">
+            <div class="container is-max-desktop">
+               <div class="columns is-centered has-text-centered">
+                  <div class="column is-four-fifths">
+                     <h2 class="title is-3">Authors</h2>
+                     <div class="columns is-multiline is-centered">
+                        <!-- Author 1 -->
+                        <div class="column is-one-quarter">
+                           <figure class="image is-128x128 is-inline-block">
+                              <img class="is-rounded" src="static/authors/Niki.jpg" alt="Niki Nezakati">
+                           </figure>
+                           <p><b>Niki Nezakati</b></p>
+                        </div>
+                        <!-- Author 2 -->
+                        <div class="column is-one-quarter">
+                           <figure class="image is-128x128 is-inline-block">
+                              <img class="is-rounded" src="static/authors/arnab.jpg" alt="Arnab Ghosh">
+                           </figure>
+                           <p><b>Arnab Ghosh</b></p>
+                        </div>
+                        <!-- Author 3 -->
+                        <div class="column is-one-quarter">
+                           <figure class="image is-128x128 is-inline-block">
+                              <img class="is-rounded" src="static/authors/amit.jpg" alt="Amit Roy-Chowdhury">
+                              </a>
+                           </figure>
+                           <p><b>Amit K. Roy-Chowdhury</b></p>
+                        </div>
+                        <!-- Author 4 -->
+                        <div class="column is-one-quarter">
+                           <figure class="image is-128x128 is-inline-block">
+                              <img class="is-rounded" src="static/authors/vishwanath.jpg" alt="Vishwanath Saragadam">
+                           </figure>
+                           <p><b>Vishwanath Saragadam</b></p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!--/ People. -->
+
+      <!-- BibTeX. -->
+      <section class="section" id="BibTeX">
+         <div class="container is-max-desktop content">
+            <h2 class="title">BibTeX</h2>
+            <pre><code>@inproceedings{nezakati2026card,
+  title={CARD: Correlation Aware Restoration with Diffusion},
+  author={Nezakati, Niki and Ghosh, Arnab and Roy-Chowdhury, Amit and Saragadam, Vishwanath},
+  booktitle={Proceedings of the Computer Vision and Pattern Recognition (CVPR) Conference},
+  year={2026}
+}</code></pre>
+         </div>
+      </section>
+      <!--/ BibTeX. -->
+
+      <script>
+         const viewers = document.querySelectorAll(".image-compare");
+         viewers.forEach((element) => {
+            let view = new ImageCompare(element, {
+               hoverStart: true,
+               addCircle: true
+            }).mount();
+         });
+
+         $(document).ready(function () {
+            $(function () {
+               $('[data-toggle="tooltip"]').tooltip()
+            })
+         });
+      </script>
+      <br>
+
+      <!-- Footer. -->
+      <p style="text-align:center"> Copyright: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC
+            BY-NC-SA 4.0</a> &copy; Niki Nezakati | Last updated: March 2026 | Website credits to <a
+            href="https://nerfies.github.io/">Nerfies</a></p>
+
+</section>
+</html>
